@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">CristosApplication</string>
+    <string name="app_name" translatable="false">CristosApplication</string>
+    <string name="texto_saludo">Hello</string>
+    <color name="background">#404040</color>
+    <color name="text_color">#FFF</color>
 </resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="texto_saludo">Good Night</string>
+    <color name="background">#FF03DAC5</color>
+    <color name="text_color">#FFBB86FC</color>
+</resources>
