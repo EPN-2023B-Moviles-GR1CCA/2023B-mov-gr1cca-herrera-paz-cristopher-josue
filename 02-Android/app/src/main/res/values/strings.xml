@@ -3,5 +3,4 @@
     <string name="texto_saludo">Hello</string>
     <color name="background">#404040</color>
     <color name="text_color">#FFF</color>
-    <string name="title_activity_aciclo_vida">ACicloVida</string>
 </resources>
