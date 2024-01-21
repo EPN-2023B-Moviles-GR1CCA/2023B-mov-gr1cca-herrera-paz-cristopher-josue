@@ -13,22 +13,25 @@ class EditarFacultad : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.i("ciclo-vida", "onCreate")
         setContentView(R.layout.activity_editar_facultad)
     }
+
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onStart() {
         Log.i("ciclo-vida", "onStart")
         super.onStart()
+
         universidadPos = intent.getIntExtra("posicion-Universidad-Editar", 1)
-        val editNombreFacultad = findViewById<TextInputEditText>(R.id.txt_nombreMascota_editar)
-        val editNumeroDepartamentos = findViewById<TextInputEditText>(R.id.txt_numeroDepartamentos_editar)
-        val editPresupuestoAnual = findViewById<TextInputEditText>(R.id.txt_presupuestoAnual_editar)
-        val editOfertaInvestigacion = findViewById<Switch>(R.id.ofertaInvestigacion_editar)
+
+        var editNombreFacultad = findViewById<TextInputEditText>(R.id.txt_nombreMascota_editar)
+        var editNumeroDepartamentos = findViewById<TextInputEditText>(R.id.txt_numeroDepartamentos_editar)
+        var editPresupuestoAnual = findViewById<TextInputEditText>(R.id.txt_presupuestoAnual_editar)
+        var editOfertaInvestigacion = findViewById<Switch>(R.id.ofertaInvestigacion_editar)
         var idFacultad = intent.getIntExtra("Facultad", 1)
 
         UBDD.TablaUniversidad!!.listarFacultades().forEachIndexed { indice: Int, facultad: Facultad ->
             if (facultad.idFacultad == idFacultad) {
-                // Llenar los campos
                 editNombreFacultad.setText(facultad.nombreFacultad)
                 editNumeroDepartamentos.setText(facultad.numeroDepartamentos.toString())
                 editPresupuestoAnual.setText(facultad.presupuestoAnual.toString())

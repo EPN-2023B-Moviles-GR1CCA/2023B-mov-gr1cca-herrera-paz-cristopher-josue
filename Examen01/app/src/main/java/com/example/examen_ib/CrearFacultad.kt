@@ -1,5 +1,6 @@
 package com.example.examen_ib
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -14,31 +15,33 @@ class CrearFacultad : AppCompatActivity() {
 
     var nextIdUF = 0
     var lastIdUF = 0
-    var idSelectedFacultad = 0
-    var UPos = 0
+    //var idSelectedFacultad = 0
+    var uPos = 0
     var idSelectedUniversidad = 0
 
+    var nombreFacultad = ""
+    var numeroDepartamentos = ""
+    var presupuestoAnual = ""
+    var ofertaInvestigacion = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.i("ciclo-vida","onCreate")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_facultad)
     }
 
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onStart() {
         super.onStart()
-
         Log.i("ciclo-vida","onStart")
-        UPos = intent.getIntExtra("posicion Universidad",-1)
-        Log.i("posU","${UPos}")
+        uPos = intent.getIntExtra("posicion Universidad",1)
 
         UBDD.TablaUniversidad!!.listarU().forEachIndexed { indice: Int, universidad: Universidad ->
-            if(indice==UPos){
+            if(indice==uPos){
                 idSelectedUniversidad = universidad.idUniversidad
             }
         }
 
         var longListFacultad = UBDD.TablaUniversidad!!.listarFacultades().lastIndex
-
         UBDD.TablaUniversidad!!.listarFacultades().forEachIndexed { indice: Int, facultad: Facultad ->
             Log.i("testExamen","${facultad.idFacultad} -> ${facultad.nombreFacultad}")
             if(indice == longListFacultad){
@@ -54,24 +57,21 @@ class CrearFacultad : AppCompatActivity() {
         }
         nextIdUF = lastIdUF+1
 
-
-        // ------------ o ------------
-
         var txtNombre = findViewById<TextInputEditText>(R.id.txt_nombreFacultad)
         var txtDepartamentos = findViewById<TextInputEditText>(R.id.txt_numeroDepartamentos)
         var txtPresupuesto = findViewById<TextInputEditText>(R.id.txt_presupuestoAnual)
         var ofertaInvestigacion = findViewById<Switch>(R.id.ofertaInvestigacion)
 
         var btnAddFacultad = findViewById<Button>(R.id.btn_crearFacultad)
+
         btnAddFacultad.setOnClickListener {
-            var nombreFacultad = txtNombre.text.toString()
-            var numeroDepartamentos = txtDepartamentos.text.toString()
-            var presupuestoAnual = txtPresupuesto.text.toString()
-            val ofertaInvestigacion = ofertaInvestigacion.isChecked.toString()
+            nombreFacultad = txtNombre.text.toString()
+            numeroDepartamentos = txtDepartamentos.text.toString()
+            presupuestoAnual = txtPresupuesto.text.toString()
+            this.ofertaInvestigacion = ofertaInvestigacion.isChecked.toString()
 
+            UBDD.TablaUniversidad!!.crearFacultad(nextIdFacultad, nombreFacultad,numeroDepartamentos,presupuestoAnual,this.ofertaInvestigacion)
             Registers.arregloUniversidadesFacultades.add(UniversidadesFacultades(nextIdUF, idSelectedUniversidad, nextIdFacultad))
-
-            UBDD.TablaUniversidad!!.crearFacultad(nextIdFacultad, nombreFacultad,numeroDepartamentos,presupuestoAnual,ofertaInvestigacion)
 
             answer()
         }
@@ -82,13 +82,11 @@ class CrearFacultad : AppCompatActivity() {
         btnCancelarCrearFacultad.setOnClickListener {
             answer()
         }
-
-
     }
 
-    fun answer(){
+    private fun answer(){
         val intentReturnParameters = Intent()
-        intentReturnParameters.putExtra("posicion Universidad",UPos)
+        intentReturnParameters.putExtra("posicion Universidad",uPos)
         setResult(
             RESULT_OK,
             intentReturnParameters

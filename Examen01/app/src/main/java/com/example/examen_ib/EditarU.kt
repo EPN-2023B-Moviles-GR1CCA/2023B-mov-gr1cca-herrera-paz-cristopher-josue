@@ -1,5 +1,6 @@
 package com.example.examen_ib
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ class EditarU : AppCompatActivity() {
         setContentView(R.layout.activity_editar_universidad)
     }
 
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onStart() {
         Log.i("ciclo-vida", "onStart")
         super.onStart()
@@ -33,9 +35,7 @@ class EditarU : AppCompatActivity() {
                 editFechaFundacion.setText(universidad.fechaFundacion.toString())
                 editTipo.setText(universidad.tipo.toString())
                 editNumeroEstudiantes.setText(universidad.numeroEstudiantes.toString())
-                if (universidad.tienePostgrado == true){
-                    editPostgrado.isChecked = true
-                }
+                editPostgrado.isChecked = universidad.tienePostgrado == true
             }
         }
 
@@ -44,11 +44,11 @@ class EditarU : AppCompatActivity() {
             var nombreUniversidad = editNombre.text.toString()
             var fechaFundacion = editFechaFundacion.text.toString()
             var tipo = editTipo.text.toString()
-            var numeroEstudiantes = editNumeroEstudiantes.text.toString().toDouble()
-            var postgrado = editPostgrado.isChecked
+            var numeroEstudiantes = editNumeroEstudiantes.text.toString()
+            var postgrado = editPostgrado.isChecked.toString()
 
             UBDD.TablaUniversidad!!.actualizarUniversidad(posicionU, nombreUniversidad,
-                fechaFundacion, tipo, numeroEstudiantes.toString(), postgrado.toString())
+                fechaFundacion, tipo, numeroEstudiantes, postgrado)
 
             val intentEditSucces = Intent(this, HomeUniversidades::class.java)
             startActivity(intentEditSucces)
@@ -59,6 +59,5 @@ class EditarU : AppCompatActivity() {
             val intentEditCancel = Intent(this, HomeUniversidades::class.java)
             startActivity(intentEditCancel)
         }
-
     }
 }

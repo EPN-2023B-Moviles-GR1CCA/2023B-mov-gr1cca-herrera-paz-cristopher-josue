@@ -57,7 +57,7 @@ class ESqliteHelperUniversidadFacultad(
                 valoresAGuardar
             )
         basedatosEscritura.close()
-        return if(resultadoGuardar.toInt() == -1) false else true
+        return resultadoGuardar.toInt() != -1
     }
 
     fun listarU(): ArrayList<Universidad>{
@@ -105,7 +105,7 @@ class ESqliteHelperUniversidadFacultad(
                 ) // Parametros clausula Where
             )
         conexionEscritura.close()
-        return if (resultadoActualizacion == -1) false else true
+        return resultadoActualizacion != -1
     }
 
     fun eliminarU(id:Int):Boolean{
@@ -115,7 +115,7 @@ class ESqliteHelperUniversidadFacultad(
         val resultadoEliminacion=conexion
             .delete("UNIVERSIDAD","id=?", arrayOf(idE))
         conexion.close()
-        return if (resultadoEliminacion.toInt() == -1) false else true
+        return resultadoEliminacion.toInt() != -1
     }
 
     // ------------------- FACULTAD -------------------
@@ -134,7 +134,7 @@ class ESqliteHelperUniversidadFacultad(
                 valoresAGuardar
             )
         basedatosEscritura.close()
-        return if(resultadoGuardar.toInt() == -1) false else true
+        return resultadoGuardar.toInt() != -1
     }
 
     fun listarFacultades(): ArrayList<Facultad>{
@@ -179,7 +179,7 @@ class ESqliteHelperUniversidadFacultad(
                 ) // Parametros clausula Where
             )
         conexionEscritura.close()
-        return if (resultadoActualizacion == -1) false else true
+        return resultadoActualizacion != -1
     }
 
     fun eliminarFacultad(id:Int):Boolean{
@@ -187,6 +187,6 @@ class ESqliteHelperUniversidadFacultad(
         val resultadoEliminacion=conexion
             .delete("FACULTAD","id=?", arrayOf(id.toString()))
         conexion.close()
-        return if (resultadoEliminacion.toInt() == -1) false else true
+        return resultadoEliminacion.toInt() != -1
     }
 }
