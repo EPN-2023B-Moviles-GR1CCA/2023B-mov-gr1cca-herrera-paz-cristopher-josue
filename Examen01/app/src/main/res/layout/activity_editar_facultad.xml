@@ -87,6 +87,7 @@
         android:id="@+id/btn_editarFacultad"
         android:layout_width="294dp"
         android:layout_height="48dp"
+        android:layout_marginTop="524dp"
         android:backgroundTint="@color/black"
         android:text="EDITAR"
         android:textColor="@color/white"
@@ -97,7 +98,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="526dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_cancelar_editar_facultad"
@@ -111,10 +112,11 @@
         android:textColorHint="@color/black"
         android:textColorLink="@color/design_default_color_secondary_variant"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_editarFacultad" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_editarFacultad"
+        app:layout_constraintVertical_bias="0.011" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"

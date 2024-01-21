@@ -10,5 +10,5 @@
         android:title="Eliminar" />
     <item
         android:id="@+id/mi_facultades"
-        android:title="Ver mascotas" />
+        android:title="Ver facultades" />
 </menu>

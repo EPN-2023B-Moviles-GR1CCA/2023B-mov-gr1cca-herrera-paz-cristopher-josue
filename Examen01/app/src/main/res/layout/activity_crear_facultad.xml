@@ -80,6 +80,7 @@
         android:id="@+id/btn_crearFacultad"
         android:layout_width="339dp"
         android:layout_height="68dp"
+        android:layout_marginTop="532dp"
         android:backgroundTint="@color/black"
         android:text="AGREGAR"
         android:textColor="@color/white"
@@ -88,7 +89,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="499dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_cancelar_crear_facultad"
@@ -101,10 +102,11 @@
         android:textColorHighlight="#BC1818"
         android:textColorLink="#DF0D0D"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_crearFacultad" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_crearFacultad"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
