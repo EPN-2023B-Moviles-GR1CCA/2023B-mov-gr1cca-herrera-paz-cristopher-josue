@@ -8,6 +8,7 @@ import android.provider.ContactsContract
 import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.gr1accvaes2023b.R
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
@@ -114,6 +115,12 @@ class MainActivity : AppCompatActivity() {
         botonGoogleMaps
             .setOnClickListener {
                 irActividad(GGoogleMapsActivity::class.java)
+            }
+
+        val botonFirebaseUI = findViewById<Button>(R.id.btn_intent_firebase_ui)
+        botonFirebaseUI
+            .setOnClickListener {
+                irActividad(HFirebaseUIAuth::class.java)
             }
 
     } // Termina onCreate
